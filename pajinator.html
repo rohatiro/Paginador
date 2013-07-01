@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Paginador de Elementos</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+	<section class="content">
+		<article class="elements">
+			<div class="elem"><span>Elemento 1</span></div>
+			<div class="elem"><span>Elemento 2</span></div>
+			<div class="elem"><span>Elemento 3</span></div>
+			<div class="elem"><span>Elemento 4</span></div>
+			<div class="elem"><span>Elemento 5</span></div>
+			<div class="elem"><span>Elemento 6</span></div>
+			<div class="elem"><span>Elemento 7</span></div>
+			<div class="elem"><span>Elemento 8</span></div>
+			<div class="elem"><span>Elemento 9</span></div>
+			<div class="elem"><span>Elemento 10</span></div>
+			<div class="elem"><span>Elemento 11</span></div>
+			<div class="elem"><span>Elemento 12</span></div>
+			<div class="elem"><span>Elemento 13</span></div>
+			<div class="elem"><span>Elemento 14</span></div>
+			<div class="elem"><span>Elemento 15</span></div>
+			<div class="elem"><span>Elemento 16</span></div>
+			<div class="elem"><span>Elemento 17</span></div>
+			<div class="elem"><span>Elemento 18</span></div>
+			<div class="elem"><span>Elemento 19</span></div>
+			<div class="elem"><span>Elemento 20</span></div>
+		</article>
+		<article class="pajinator">
+			<ul></ul>
+		</article>
+	</section>
+	<script type="text/javascript" src="pajinator.js"></script>
+	<script type="text/javascript">
+		var JQReady = function () {
+			$('.content').pajinate({
+				items_id:'.elem',
+				items_per_page: 5,
+				nav_panel_id: '.pajinator > ul'
+			});
+		};
+		$(JQReady);
+	</script>
+</body>
+</html>

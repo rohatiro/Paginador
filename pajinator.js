@@ -13,7 +13,7 @@
 			nav_label_last: 'Last',
 			nav_label_next: 'Next',
 			nav_label_prev: 'Prev',
-			nav_order : ["first", "prev", "num", "next", "last"],
+			nav_order : ["first", "prev", "page", "next", "last"],
 			nav_panel_id: '.pajinator',
 			num_pages_to_display: 2,
 			show_first_last: true
@@ -37,6 +37,7 @@
 			first = !options.show_first_last ? '' : '<li class="first" ><a>' + options.nav_label_first + '</a></li>',
 			last = !options.show_first_last ? '' : '<li class="last" ><a>' + options.nav_label_last + '</a></li>',
 			pajinator_html = '', i, j;
+			options.pages_id = options.pages_id.replace('.','');
 			for (i = 0; i < options.nav_order.length; i++) {
 				switch (options.nav_order[i]) {
 					case 'first':
@@ -55,7 +56,7 @@
 					for (j = 0; j < num_pages; j++) {
 						if (j === 1)
 							pajinator_html += less;
-						pajinator_html += '<li class="' + options.pages_id + '" data-link="' + j + '" ><a>' + j + '</a></li>';
+						pajinator_html += '<li class="' + options.pages_id + '" data-link="' + j + '" ><a>' + (j+1) + '</a></li>';
 						if (j === (num_pages - 2))
 							pajinator_html += more;
 					}
@@ -76,8 +77,32 @@
 			options.num_pages_to_display = Math.min(options.num_pages_to_display, total_page_links);
 			$pajinators.find(options.pages_id+':not(.first_page):not(.last_page)').hide();
 			$pajinators.each(function () {
-				$(this).find(options.pages_id+':not(.first_page):not(.last_page)').slice();
+				$(this).find(options.pages_id).slice(0, options.num_pages_to_display);
 			});
+			$pajinators.find('.first_page').on('click', clickFirst);
 		});
+	function clickFirst (e) {
+		e.preventDefault();
+	}
+	function clickLast (e) {
+		e.preventDefault();
+	}
+	function clickNext (e) {
+		e.preventDefault();
+	}
+	function clickPrev (e) {
+		e.preventDefault();
+	}
+	function clickPageLink (e) {
+		e.preventDefault();
+	}
+	function goToPage (page_num) {
+		var itemsperpage = parseInt(meta.data(items_per_page),10),
+		isLastPage = false,
+		start_from = page_num*itemsperpage,
+		end_on = start_from + itemsperpage;
+		$items.hide().slice(start_from, end_on).show();
+		$pajinators.find('.page[data-link=' + page_num + ']');
+	}
 	};
 })(jQuery);
